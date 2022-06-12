@@ -30,8 +30,13 @@ class TenantRepository
 
     public function updateTenant(string $identify, array $data)
     {
+
         $tenant = $this->entity::findOrFail($identify);
 
-        return $tenant->update($data);
+        $tenant->update($data);
+
+        return $tenant;
+
+        // return $tenant->update($data);
     }
 }

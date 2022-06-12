@@ -38,7 +38,6 @@ class TenantController extends Controller
 
     public function update(string $tenantId, TenantRequest $request)
     {
-        $tenant = Tenant::findOrFail($tenantId);
 
         $tenant = $this->repository->updateTenant($tenantId, $request->validated());
 

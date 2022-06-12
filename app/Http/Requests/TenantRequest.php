@@ -25,15 +25,27 @@ class TenantRequest extends FormRequest
     {
         $id = $this->segment(2);
 
-        return [
+
+        $rules = [
             'plan_id' => ['nullable', 'exists:plans,id'],
             'status' => ['boolean'],
             'isCnpj' => ['boolean'],
             'cnpj' => ['required', 'string', 'min:11', 'max:14', "unique:tenants,cnpj,{$id},id"],
             'name' => ['required', 'min:3', 'max:30', "unique:tenants,name,{$id},id"],
-            // 'slug' => ['min:3', 'max:30', 'unique:tenants'],
-            'email' => ['required', "unique:tenants,email,{$id},id"],
+            'email' => ['required', 'email', "unique:tenants,email,{$id},id"],
             'logo' => ['nullable', 'mimes:jpeg,jpg,png,gif']
         ];
+
+        if ($this->method() == 'PUT') {
+            $rules = [
+                'status' => ['boolean'],
+                'isCnpj' => ['boolean'],
+                'cnpj' => ['nullable', 'string', 'min:11', 'max:14', "unique:tenants,cnpj,{$id},id"],
+                'name' => ['nullable', 'min:3', 'max:30', "unique:tenants,name,{$id},id"],
+                'email' => ['nullable', 'email', "unique:tenants,email,{$id},id"]
+            ];
+        }
+
+        return $rules;
     }
 }
