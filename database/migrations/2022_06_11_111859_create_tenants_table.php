@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('tenants', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('plan_id')->nullable();
-            $table->uuid('tenant_id')->nullable();
-            $table->string('name');
+            $table->boolean('status')->default(true);
+            $table->boolean('isCnpj')->default(true);
+            $table->string('cnpj')->unique();
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tenants');
     }
 };

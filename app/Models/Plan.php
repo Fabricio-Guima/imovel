@@ -22,6 +22,11 @@ class Plan extends Model
         return $this->hasMany(User::class);
     }
 
+    public function tenants()
+    {
+        return $this->hasMany(Tenant::class);
+    }
+
 
     //como se fosse um observer para criar um slug
     public function setNameAttribute($prop)
