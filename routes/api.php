@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ActionController;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\TenantController;
 use App\Http\Controllers\Api\TypeController;
@@ -37,6 +38,13 @@ Route::get('/types/{id}', [TypeController::class, 'show']);
 Route::post('/types', [TypeController::class, 'store']);
 Route::put('/types/{id}', [TypeController::class, 'update']);
 Route::delete('/types/{id}', [TypeController::class, 'destroy']);
+
+//actions imóveis
+Route::get('/actions', [ActionController::class, 'index']);
+Route::get('/actions/{id}', [ActionController::class, 'show']);
+Route::post('/actions', [ActionController::class, 'store']);
+Route::put('/actions/{id}', [ActionController::class, 'update']);
+Route::delete('/actions/{id}', [ActionController::class, 'destroy']);
 
 
 
