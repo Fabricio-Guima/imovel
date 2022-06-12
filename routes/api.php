@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\TenantController;
+use App\Http\Controllers\Api\TypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,13 @@ Route::get('/tenants/{id}', [TenantController::class, 'show']);
 Route::post('/tenants', [TenantController::class, 'store']);
 Route::put('/tenants/{id}', [TenantController::class, 'update']);
 Route::delete('/tenants/{id}', [TenantController::class, 'destroy']);
+
+//type imóvel
+Route::get('/types', [TypeController::class, 'index']);
+Route::get('/types/{id}', [TypeController::class, 'show']);
+Route::post('/types', [TypeController::class, 'store']);
+Route::put('/types/{id}', [TypeController::class, 'update']);
+Route::delete('/types/{id}', [TypeController::class, 'destroy']);
 
 
 
