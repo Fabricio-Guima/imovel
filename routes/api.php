@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\ActionController;
-use App\Http\Controllers\Api\PlanController;
-use App\Http\Controllers\Api\TenantController;
-use App\Http\Controllers\Api\TypeController;
+use App\Http\Controllers\Api\{
+    ActionController,
+    PlanController,
+    SubtypeController,
+    TenantController,
+    TypeController
+};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +41,13 @@ Route::get('/types/{id}', [TypeController::class, 'show']);
 Route::post('/types', [TypeController::class, 'store']);
 Route::put('/types/{id}', [TypeController::class, 'update']);
 Route::delete('/types/{id}', [TypeController::class, 'destroy']);
+
+//actions imóveis
+Route::get('/subtypes', [SubtypeController::class, 'index']);
+Route::get('/subtypes/{id}', [SubtypeController::class, 'show']);
+Route::post('/subtypes', [SubtypeController::class, 'store']);
+Route::put('/subtypes/{id}', [SubtypeController::class, 'update']);
+Route::delete('/subtypes/{id}', [SubtypeController::class, 'destroy']);
 
 //actions imóveis
 Route::get('/actions', [ActionController::class, 'index']);
