@@ -5,8 +5,10 @@ use App\Http\Controllers\Api\{
     PlanController,
     SubtypeController,
     TenantController,
-    TypeController
+    TypeController,
+    UserController
 };
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +22,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+//Auth
+Route::post('/auth', [AuthController::class, 'auth']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware(['auth:sanctum']);
+Route::get('/me', [AuthController::class, 'me'])->middleware(['auth:sanctum']);
+//User
+Route::post('/user/create', [UserController::class, 'store']);
+Route::post('/user/update', [UserController::class, 'update']);
+
 
 //plan
 Route::get('/plans', [PlanController::class, 'index']);
