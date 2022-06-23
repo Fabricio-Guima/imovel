@@ -14,6 +14,7 @@ class AuthController extends Controller
 {
     public function auth(AuthRequest $request)
     {
+        // dd($request->all());
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -25,9 +26,10 @@ class AuthController extends Controller
         //logout de outros devices
         // if ($request->has('logout_others_devices')) {
         //     $user->tokens()->delete();
-        // };
+        // };       
 
         $user->tokens()->delete();
+       
 
         $token = $user->createToken($request->device_name)->plainTextToken;
 

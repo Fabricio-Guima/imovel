@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\{
     UserController
 };
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Subscriptions\SubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,10 @@ Route::get('/me', [AuthController::class, 'me'])->middleware(['auth:sanctum']);
 //User
 Route::post('/user/create', [UserController::class, 'store']);
 Route::post('/user/update', [UserController::class, 'update']);
+
+//Subscription
+Route::post('/subscriptions/create', [SubscriptionController::class, 'store']);
+
 
 
 //plan
