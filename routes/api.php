@@ -35,6 +35,9 @@ Route::post('/user/update', [UserController::class, 'update']);
 //Subscription
 Route::post('/subscriptions/create', [SubscriptionController::class, 'store']);
 
+//intenção de pagamento, id de intenção para o user
+Route::get('/subscriptions/intent', [SubscriptionController::class, 'getClientSecret']);
+
 
 
 //plan
