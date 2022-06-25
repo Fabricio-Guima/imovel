@@ -38,6 +38,10 @@ Route::post('/subscriptions/create', [SubscriptionController::class, 'store']);
 //intenção de pagamento, id de intenção para o user
 Route::get('/subscriptions/intent', [SubscriptionController::class, 'getClientSecret']);
 
+// é subscrito, é assinante?
+Route::get('/subscriptions/subscribed', [SubscriptionController::class, 'userIsSubscribed']);
+
+
 
 
 //plan

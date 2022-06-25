@@ -13,6 +13,11 @@ class SubscriptionController extends Controller
     }
     public function store(Request $request)
     {
+
+        if (auth()->user()->subscribed('default')) {
+            return response()->json(['message' => 'já é subscrito']);
+        }
+
         $user = $request->user();
 
         //mensal 150
@@ -29,5 +34,14 @@ class SubscriptionController extends Controller
                 'client_secret' => $request->user()->createSetupIntent()->client_secret,
             ]
         ];
+    }
+
+    public function userIsSubscribed()
+    {
+        if (!auth()->user()->subscribed('default')) {
+            return response()->json(['message' => 'não é subscrito']);
+        }
+
+        return  response()->json(['message' => 'é subscrito, tem assinatura']);
     }
 }
