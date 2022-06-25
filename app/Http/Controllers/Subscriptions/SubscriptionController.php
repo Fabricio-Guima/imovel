@@ -44,4 +44,21 @@ class SubscriptionController extends Controller
 
         return  response()->json(['message' => 'é subscrito, tem assinatura']);
     }
+
+    //faturas do usuário
+    public function invoices()
+    {
+        $invoices = auth()->user()->invoices();
+
+        return response()->json(['invoices' => $invoices]);
+    }
+
+    //download das faturas
+    public function downloadInvoice($invoice)
+    {
+        return auth()->user()->downloadInvoice($invoice, [
+            'vendor' => config('app.name'),
+            'product' => 'Assinatura Vip'
+        ]);
+    }
 }

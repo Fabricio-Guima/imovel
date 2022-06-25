@@ -41,6 +41,13 @@ Route::get('/subscriptions/intent', [SubscriptionController::class, 'getClientSe
 // é subscrito, é assinante?
 Route::get('/subscriptions/subscribed', [SubscriptionController::class, 'userIsSubscribed']);
 
+//Faturas do usuário
+Route::get('/subscriptions/invoices', [SubscriptionController::class, 'invoices'])->middleware(['auth:sanctum']);
+
+//download da fatura
+Route::get('/subscriptions/invoices/{invoiceId}', [SubscriptionController::class, 'downloadInvoice'])->middleware(['auth:sanctum']);
+
+
 
 
 
