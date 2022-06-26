@@ -29,7 +29,7 @@ class AuthController extends Controller
         // };       
 
         $user->tokens()->delete();
-       
+
 
         $token = $user->createToken($request->device_name)->plainTextToken;
 
@@ -40,7 +40,9 @@ class AuthController extends Controller
 
     public function me()
     {
-        return new UserResource(auth()->user());
+        $user = auth()->user();
+        UserResource::withoutWrapping();
+        return new UserResource($user);
     }
 
     public function logout()

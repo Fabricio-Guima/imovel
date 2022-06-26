@@ -47,6 +47,16 @@ Route::get('/subscriptions/invoices', [SubscriptionController::class, 'invoices'
 //download da fatura
 Route::get('/subscriptions/invoices/{invoiceId}', [SubscriptionController::class, 'downloadInvoice'])->middleware(['auth:sanctum']);
 
+//cancelar a cobrança de assinatura, mas o usuário pode usar o serviço até a data contratada por ele
+Route::get('/subscriptions/cancel', [SubscriptionController::class, 'cancelSubscription'])->middleware(['auth:sanctum']);
+
+//reativar a assinatura enquanto estiver no prazo (grace)
+Route::get('/subscriptions/reactivate', [SubscriptionController::class, 'reactivateSubscription'])->middleware(['auth:sanctum']);
+
+Route::get('/subscriptions/teste', [UserController::class, 'teste'])->middleware(['auth:sanctum']);
+
+
+
 
 
 

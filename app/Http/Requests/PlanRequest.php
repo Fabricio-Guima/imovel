@@ -26,6 +26,7 @@ class PlanRequest extends FormRequest
         $id = $this->segment(2);
         return [
             'name' => ['required', 'string', 'min:3', 'max:50', "unique:plans,name,{$id},id"],
+            'stripe_id' => ['required', 'string', "unique:plans,stripe_id,{$id},id"],
             'price' => ['required', 'min:0'],
             'description' => ['nullable', 'string', 'min:3', 'max:1000'],
         ];

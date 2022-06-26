@@ -14,7 +14,7 @@ class Plan extends Model
     public $incrementing = false;
     protected $keyType = 'uuid';
 
-    protected $fillable = ['name', 'slug', 'price', 'description'];
+    protected $fillable = ['name', 'stripe_id', 'slug', 'price', 'description'];
 
 
     public function users()
@@ -25,6 +25,11 @@ class Plan extends Model
     public function tenants()
     {
         return $this->hasMany(Tenant::class);
+    }
+
+    public function details()
+    {
+        return $this->hasMany(Detail::class);
     }
 
 

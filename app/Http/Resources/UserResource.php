@@ -18,6 +18,8 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'isSubscribed' => $this->subscribed('default') ?? false,
+            'onGracePeriod' => $this->subscription('default') ? $this->subscription('default')->onGracePeriod() : false
         ];
     }
 }

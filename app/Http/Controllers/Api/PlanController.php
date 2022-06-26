@@ -12,7 +12,7 @@ class PlanController extends Controller
 {
     public function index()
     {
-        $plans = Plan::get();
+        $plans = Plan::with('details')->get();
 
         return PlanResource::collection($plans);
     }
@@ -25,6 +25,7 @@ class PlanController extends Controller
 
     public function store(PlanRequest $request)
     {
+        // dd($request->all());
         $plan = Plan::create($request->validated());
 
         return new PlanResource($plan);

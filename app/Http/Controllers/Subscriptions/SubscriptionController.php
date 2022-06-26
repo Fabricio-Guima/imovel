@@ -61,4 +61,16 @@ class SubscriptionController extends Controller
             'product' => 'Assinatura Vip'
         ]);
     }
+
+    //cancelar assinatura recorrente
+    public function cancelSubscription()
+    {
+        return auth()->user()->subscription('default')->cancel();
+    }
+
+    //reativar assinatura se ela estiver no prazo
+    public function reactivateSubscription()
+    {
+        return auth()->user()->subscription('default')->resume();
+    }
 }

@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('plans', function (Blueprint $table) {
+        Schema::create('details', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('stripe_id')->unique();
-            $table->string('name')->unique();
-            $table->string('slug')->unique();
-            $table->integer('price');
-            $table->text('description')->nullable();
+            $table->uuid('plan_id')->nullable();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plans');
+        Schema::dropIfExists('details');
     }
 };
