@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\{
     ActionController,
+    DetailController,
     PlanController,
     SubtypeController,
     TenantController,
@@ -57,16 +58,19 @@ Route::get('/subscriptions/teste', [UserController::class, 'teste'])->middleware
 
 
 
-
-
-
-
 //plan
 Route::get('/plans', [PlanController::class, 'index']);
 Route::get('/plans/{id}', [PlanController::class, 'show']);
 Route::post('/plans', [PlanController::class, 'store']);
 Route::put('/plans/{id}', [PlanController::class, 'update']);
 Route::delete('/plans/{id}', [PlanController::class, 'destroy']);
+
+//detail
+Route::get('/details', [DetailController::class, 'index']);
+Route::get('/details/{id}', [DetailController::class, 'show']);
+Route::post('/details', [DetailController::class, 'store']);
+Route::put('/details/{id}', [DetailController::class, 'update']);
+Route::delete('/details/{id}', [DetailController::class, 'destroy']);
 
 //tenant
 Route::get('/tenants', [TenantController::class, 'index']);

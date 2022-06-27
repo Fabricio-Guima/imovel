@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Subscriptions;
 
 use App\Http\Controllers\Controller;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
@@ -17,11 +18,13 @@ class SubscriptionController extends Controller
         if (auth()->user()->subscribed('default')) {
             return response()->json(['message' => 'já é subscrito']);
         }
+        //plan
+        $plan = Plan::where('slug', $request->plan_slug)->first();
 
         $user = $request->user();
 
         //mensal 150
-        $user->newSubscription('default', "price_1LDtwkEtM4SDePgcDPCgMG7q")->create($request->token);
+        $user->newSubscription('default', $plan->stripe_id)->create($request->token);
 
         return response()->json(['message' => 'Assinatura feita com sucesso']);
     }
