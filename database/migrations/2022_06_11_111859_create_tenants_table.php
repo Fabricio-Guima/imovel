@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->string('whatsapp')->nullable();
+            $table->string('telegram')->nullable();
             $table->string('logo')->nullable();
             $table->timestamps();
         });
