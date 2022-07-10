@@ -13,6 +13,7 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     public function auth(AuthRequest $request)
+
     {
         // dd($request->all());
         $user = User::where('email', $request->email)->first();
@@ -41,6 +42,8 @@ class AuthController extends Controller
     public function me()
     {
         $user = auth()->user();
+        $user['tenant'] = auth()->user()->tenant;
+
         UserResource::withoutWrapping();
         return new UserResource($user);
     }

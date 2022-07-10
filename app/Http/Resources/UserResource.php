@@ -14,13 +14,15 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+        //criar resource para tenant
         return [
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
             'isSubscribed' => $this->subscribed('default') ?? false,
             'onGracePeriod' => $this->subscription('default') ? $this->subscription('default')->onGracePeriod() : false,
-            'cancelled' =>  $this->subscription('default') ? $this->subscription('default')->cancelled() : false
+            'cancelled' =>  $this->subscription('default') ? $this->subscription('default')->cancelled() : false,
+            'tenant' => $this->tenant
         ];
     }
 }

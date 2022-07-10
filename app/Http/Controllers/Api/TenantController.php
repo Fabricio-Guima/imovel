@@ -32,7 +32,7 @@ class TenantController extends Controller
 
     public function store(TenantRequest $request)
     {
-        $tenant = $this->repository->createTenant($request->validated());
+        $tenant = $this->repository->createTenant($request->all());
         return  new TenantResource($tenant);
     }
 
