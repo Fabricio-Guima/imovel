@@ -30,13 +30,13 @@ class TenantRequest extends FormRequest
             'plan_id' => ['nullable', 'exists:plans,id'],
             'status' => ['boolean'],
             'isCnpj' => ['boolean'],
-            'cnpj' => ['required', 'string', 'min:11', 'max:14', "unique:tenants,cnpj,{$id},id"],
+            'cnpj' => ['required', 'string', 'min:11', 'max:18', "unique:tenants,cnpj,{$id},id"],
             'name' => ['required', 'min:3', 'max:30', "unique:tenants,name,{$id},id"],
             'email' => ['required', 'email', "unique:tenants,email,{$id},id"],
             'logo' => ['nullable', 'mimes:jpeg,jpg,png,gif'],
-            'phone' => ['nullable', 'string', 'min:9', 'max:11'],
-            'whatsapp' => ['nullable', 'string', 'min:9', 'max:11'],
-            'telegram' => ['nullable', 'string', 'min:9', 'max:11']
+            'phone' => ['nullable', 'string', 'min:9', 'max:15'],
+            'whatsapp' => ['nullable', 'string', 'min:9', 'max:15'],
+            'telegram' => ['nullable', 'string', 'min:9', 'max:15']
         ];
 
         if ($this->method() == 'PUT') {

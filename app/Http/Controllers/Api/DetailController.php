@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DetailRequest;
 use App\Http\Resources\DetailResource;
 use App\Models\Detail;
 use Illuminate\Http\Request;
@@ -19,6 +20,13 @@ class DetailController extends Controller
     public function show($detailId)
     {
         $detail = Detail::findOrFail($detailId);
+
+        return new DetailResource($detail);
+    }
+
+    public function store(DetailRequest $request)
+    {
+        $detail = Detail::create($request->validated());
 
         return new DetailResource($detail);
     }

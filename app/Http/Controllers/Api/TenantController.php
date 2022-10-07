@@ -20,7 +20,6 @@ class TenantController extends Controller
 
     public function index()
     {
-
         return Tenant::get();
     }
 

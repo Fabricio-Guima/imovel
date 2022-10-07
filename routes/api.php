@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\{
     ActionController,
     DetailController,
     PlanController,
+    PropertyController,
     SubtypeController,
     TenantController,
     TypeController,
@@ -58,6 +59,14 @@ Route::get('/subscriptions/teste', [UserController::class, 'teste'])->middleware
 
 
 
+
+//property imóveis
+Route::get('/properties', [PropertyController::class, 'index']);
+Route::get('/properties/{id}', [PropertyController::class, 'show']);
+Route::post('/properties', [PropertyController::class, 'store']);
+Route::put('/properties/{id}', [PropertyController::class, 'update']);
+Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
+
 //plan
 Route::get('/plans', [PlanController::class, 'index']);
 Route::get('/plans/{id}', [PlanController::class, 'show']);
@@ -86,7 +95,7 @@ Route::post('/types', [TypeController::class, 'store']);
 Route::put('/types/{id}', [TypeController::class, 'update']);
 Route::delete('/types/{id}', [TypeController::class, 'destroy']);
 
-//actions imóveis
+//subtypes imóveis
 Route::get('/subtypes', [SubtypeController::class, 'index']);
 Route::get('/subtypes/{id}', [SubtypeController::class, 'show']);
 Route::post('/subtypes', [SubtypeController::class, 'store']);

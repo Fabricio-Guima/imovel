@@ -14,7 +14,6 @@ class SubscriptionController extends Controller
     }
     public function store(Request $request)
     {
-
         if (auth()->user()->subscribed('default')) {
             return response()->json(['message' => 'já é subscrito']);
         }
@@ -25,6 +24,10 @@ class SubscriptionController extends Controller
 
         //mensal 150
         $user->newSubscription('default', $plan->stripe_id)->create($request->token);
+
+        $user->tenant()->update([
+            'plan_id' => $plan->slug
+        ]);
 
         return response()->json(['message' => 'Assinatura feita com sucesso']);
     }
